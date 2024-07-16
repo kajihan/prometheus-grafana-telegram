@@ -1,0 +1,18 @@
+route:
+  receiver: 'telegram'
+  routes:
+  # All alerts with severity=warning or severity=critical
+  # are dispatched to the telegram receiver
+  - receiver: 'telegram'
+    group_wait: 10s
+    matchers:
+    - severity=~"warning|critical"
+
+receivers:
+- name: 'telegram'
+  telegram_configs:
+  - bot_token: "BOT_TOKEN_HERE"
+    chat_id: CHAT_ID_HERE
+
+# Use bot_token to get chat_id -> just replace BOT_TOKEN_HERE with bot_token then find chat_id in json response
+# https://api.telegram.org/botINSERT_BOT_ID_HERE/getUpdates
